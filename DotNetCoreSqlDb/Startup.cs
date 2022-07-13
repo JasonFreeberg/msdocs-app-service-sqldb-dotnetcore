@@ -62,7 +62,7 @@ namespace DotNetCoreSqlDb
             });
 
             // Automatically apply schema to DB.
-            var serviceScopeFactory = applicationBuilder.ApplicationServices.GetRequiredService<IServiceScopeFactory>()
+            var serviceScopeFactory = applicationBuilder.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
             using (var serviceScope = serviceScopeFactory.CreateScope())
             {
                 var dbContext = serviceScope.ServiceProvider.GetService<MyDbContext>();
