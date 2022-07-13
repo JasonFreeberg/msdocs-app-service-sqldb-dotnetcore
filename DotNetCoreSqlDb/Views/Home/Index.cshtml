@@ -4,5 +4,20 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
+    <p>
+        Congratulations, you have now deployed an Azure Web App and Azure SQL database. There's still one more step:
+    </p>
+    <p>
+        Clone your repository locally, copy the connection string from the Azure Portal and run the following commands to apply the migrations to the database:
+    </p>
+    <pre>
+        cd <sample-root>\DotNetCoreSqlDb
+        dotnet tool install -g dotnet-ef
+        dotnet ef migrations add InitialCreate
+        dotnet ef database update
+    </pre>
+    <p>
+        For more detailed instructions, <a href="https://docs.microsoft.com/en-us/azure/app-service/tutorial-dotnetcore-sqldb-app?tabs=azure-cli%2Cvisualstudio-deploy%2Cdeploy-instructions-azure-portal%2Cazure-portal-logs%2Cazure-portal-resources#5---generate-the-database-schema">click here</a>
+    </p>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
