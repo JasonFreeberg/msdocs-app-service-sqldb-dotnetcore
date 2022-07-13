@@ -29,7 +29,8 @@ namespace DotNetCoreSqlDb
         {
             services.AddControllersWithViews();
             services.AddDbContext<MyDatabaseContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("MyDbConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING")));
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,6 +60,14 @@ namespace DotNetCoreSqlDb
                     name: "default",
                     pattern: "{controller=Todos}/{action=Index}/{id?}");
             });
+
+            // Automatically apply schema to DB.
+            var serviceScopeFactory = applicationBuilder.ApplicationServices.GetRequiredService<IServiceScopeFactory>()
+            using (var serviceScope = serviceScopeFactory.CreateScope())
+            {
+                var dbContext = serviceScope.ServiceProvider.GetService<MyDbContext>();
+                dbContext.Database.EnsureCreated();
+            }
         }
     }
 }
