@@ -61,13 +61,6 @@ namespace DotNetCoreSqlDb
                     pattern: "{controller=Todos}/{action=Index}/{id?}");
             });
 
-            // Automatically apply schema to DB.
-            var serviceScopeFactory = applicationBuilder.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
-            using (var serviceScope = serviceScopeFactory.CreateScope())
-            {
-                var dbContext = serviceScope.ServiceProvider.GetService<MyDbContext>();
-                dbContext.Database.EnsureCreated();
-            }
         }
     }
 }
